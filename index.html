@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="sound"></h1>
+  <input type="text" id="name">
+  <button onclick="getSound()">API 요청</button>
+
+
+
+  <a href="http://localhost:3000/sound/dog">강아지호출</a>
+  <a href="http://localhost:3000/sound/cat">고양이호출</a>
+  <a href="http://localhost:3000/sound/pig">돼지호출</a>
+  <a href="http://localhost:3000/sound/alien">에일리언호출</a>
+
+  <script>
+    function getSound () {
+      const name = document.querySelector('#name').value
+      fetch(`http://localhost:3000/sound/${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        document.getElementById('sound').innerHTML = data.sound; 
+      })
+    }
+  </script>
+</body>
+</html>
